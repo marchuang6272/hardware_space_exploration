@@ -1,0 +1,25 @@
+{
+    "adder": {
+        "input_ports": {
+            "a": "intermediate",
+            "b": 8
+        },
+        "output_ports": {
+            "c": 8,
+            "d": 10,
+            "four": 8
+        }
+    },
+    "multiplier": {
+        "input_ports": {
+            "a": "intermediate",
+            "b": 8,
+            "ac": 10,
+            "input": 10,
+            "c": 8
+        },
+        "output_ports": {
+            "product": "intermediate"
+        }
+    }
+}
