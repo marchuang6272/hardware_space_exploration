@@ -1,0 +1,80 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 100%;
+            height: 100%;
+            background-color: #2a3950;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"font": {"color": "white"}, "id": "adder_instance_1", "label": "\nadder #(\n) adder_instance_1 (\n    .d( adder_instance_1_d )\n    );\n\n", "shape": "box"}, {"font": {"color": "white"}, "id": "multiplier_instance", "label": "\nmultiplier #(\n) multiplier_instance (\n    .product( multiplier_instance_product ),\n    .ac( adder_instance_1_d ),\n    .a( multiplier_instance_1_product )\n    );\n\n", "shape": "box"}, {"font": {"color": "white"}, "id": "multiplier_instance_1", "label": "\nmultiplier #(\n) multiplier_instance_1 (\n    .product( multiplier_instance_1_product ),\n    .ac( adder_instance_1_d ),\n    .a( multiplier_instance_product )\n    );\n\n", "shape": "box"}]);
+        edges = new vis.DataSet([{"arrows": "to", "font": {"color": "white", "strokeWidth": "0px"}, "from": "adder_instance_1", "label": "[9:0] adder_instance_1_d;\n", "length": 700, "to": "multiplier_instance"}, {"arrows": "to", "font": {"color": "white", "strokeWidth": "0px"}, "from": "adder_instance_1", "label": "[9:0] adder_instance_1_d;\n", "length": 700, "to": "multiplier_instance_1"}, {"arrows": "to", "font": {"color": "white", "strokeWidth": "0px"}, "from": "multiplier_instance", "label": "intermediate multiplier_instance_product;\n", "length": 700, "to": "multiplier_instance_1"}, {"arrows": "to", "font": {"color": "white", "strokeWidth": "0px"}, "from": "multiplier_instance_1", "label": "intermediate multiplier_instance_1_product;\n", "length": 700, "to": "multiplier_instance"}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {"nodes": {"font": {"align": "left"}, "color": {"background": "#016171"}, "borderWidth": 0}, "edges": {"color": "#00e0c6", "smooth": {"type": "continuous"}}};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

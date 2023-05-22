@@ -1,0 +1,6 @@
+{% set type_value = type -%}
+{% if type_value is string -%}
+{{ type_value }} {{ module }}_{{ port }};
+{% elif type_value | is_integer -%}
+[{{ type_value - 1 }}:0] {{ module }}_{{ port }};
+{% endif -%}

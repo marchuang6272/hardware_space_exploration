@@ -1,0 +1,49 @@
+{
+    "directed": true,
+    "multigraph": false,
+    "graph": {},
+    "nodes": [
+        {
+            "module_name": "adder",
+            "id": "adder_instance_1"
+        },
+        {
+            "module_name": "multiplier",
+            "id": "multiplier_instance"
+        },
+        {
+            "module_name": "multiplier",
+            "id": "multiplier_instance_1"
+        }
+    ],
+    "links": [
+        {
+            "port_connections": {
+                "d": "ac"
+            },
+            "source": "adder_instance_1",
+            "target": "multiplier_instance"
+        },
+        {
+            "port_connections": {
+                "d": "ac"
+            },
+            "source": "adder_instance_1",
+            "target": "multiplier_instance_1"
+        },
+        {
+            "port_connections": {
+                "product": "a"
+            },
+            "source": "multiplier_instance",
+            "target": "multiplier_instance_1"
+        },
+        {
+            "port_connections": {
+                "product": "a"
+            },
+            "source": "multiplier_instance_1",
+            "target": "multiplier_instance"
+        }
+    ]
+}

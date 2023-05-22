@@ -1,0 +1,15 @@
+
+{{module_name}} #(
+) {{instance_name}} (
+    {% for connection in port_connections -%}
+    {%set internal_port = connection.internal_port-%}
+    {%set external_port = connection.external_port-%}
+    {%set external_module = connection.external_module-%}
+    {% if loop.last -%}
+        .{{internal_port}}( {{external_module}}_{{external_port}} )
+    {% else -%}
+        .{{internal_port}}( {{external_module}}_{{external_port}} ),
+    {% endif -%}
+    {% endfor -%}
+);
+{{'\n'}}
