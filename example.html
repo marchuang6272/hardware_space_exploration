@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Graph Visualization</title>
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <style type="text/css">
+        #graph-container {
+            width: 100%;
+            height: {{ height }};
+        }
+    </style>
+</head>
+<body>
+    <div id="graph-container"></div>
+    <script type="text/javascript">
+        var container = document.getElementById("graph-container");
+        var data = {{ graph | tojson }};
+        var options = {};
+        var network = new vis.Network(container, data, options);
+    </script>
+</body>
+</html>

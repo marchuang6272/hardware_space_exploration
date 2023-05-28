@@ -37,6 +37,7 @@ class HardwareLibrary(metaclass=SingletonMeta):
         self._check_ports_overlap(input_ports=input_ports, output_ports=output_ports)
         self._check_ports_exist(input_ports)
         self._check_ports_exist(output_ports)
+
         module_dict = {"input_ports": input_ports, "output_ports": output_ports}
 
         self.hardware_library[module_name] = module_dict

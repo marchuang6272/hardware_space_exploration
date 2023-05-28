@@ -1,0 +1,33 @@
+//SOME CODE
+//SOME CODE
+//SOME CODE
+//SOME CODE
+//SOME CODE
+//SOME CODE
+//SOME CODE
+//+generate_module("alublock_vadd", "add", parameter_list_i = {}, port_list_i = {})
+//SOME CODE
+//SOME CODE
+//SOME CODE
+//SOME CODE
+//SOME CODE
+//SOME CODE
+//SOME CODE
+//SOME CODE
+//SOME CODE
+//+generate_module("alublock_vadd", "add1", parameter_list_i = {}, port_list_i = {})
+//SOME CODE
+//SOME CODE
+//SOME CODE
+//SOME CODE
+//SOME CODE
+//SOME CODE
+//SOME CODE
+//+generate_module("alublock_vadd", "add3", parameter_list_i = {"VALU_IN_WIDTH" : "test"}, port_list_i = {})
+//SOME CODE
+//SOME CODE
+//SOME CODE
+//SOME CODE
+//SOME CODE
+//SOME CODE
+//SOME CODE
