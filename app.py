@@ -1,7 +1,7 @@
 from flask import Flask, send_file
 
 app = Flask(__name__)
-html_file = "templates/graph.html"
+html_file = "generated_files/display.html"
 
 
 @app.route("/")

@@ -44,16 +44,16 @@ g.add_edge(
     "multiplier_instance_1",
     port_connections={"d": "ac"},
 )
-g.add_edge(
-    "multiplier_instance_1",
-    "multiplier_instance",
-    port_connections={"product": "a"},
-)
-g.add_edge(
-    "multiplier_instance",
-    "multiplier_instance_1",
-    port_connections={"product": "a"},
-)
+# g.add_edge(
+#     "multiplier_instance_1",
+#     "multiplier_instance",
+#     port_connections={"product": "a"},
+# )
+# g.add_edge(
+#     "multiplier_instance",
+#     "multiplier_instance_1",
+#     port_connections={"product": "a"},
+# )
 # g.add_edge(
 #     "multiplier_instance",
 #     "multiplier_instance_1",

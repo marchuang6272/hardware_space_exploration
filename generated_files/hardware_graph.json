@@ -30,20 +30,6 @@
             },
             "source": "adder_instance_1",
             "target": "multiplier_instance_1"
-        },
-        {
-            "port_connections": {
-                "product": "a"
-            },
-            "source": "multiplier_instance",
-            "target": "multiplier_instance_1"
-        },
-        {
-            "port_connections": {
-                "product": "a"
-            },
-            "source": "multiplier_instance_1",
-            "target": "multiplier_instance"
         }
     ]
 }
