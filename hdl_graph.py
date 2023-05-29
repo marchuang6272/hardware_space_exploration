@@ -15,25 +15,6 @@ hardware_library = HardwareLibrary()
 
 
 class HDLGraph(nx.DiGraph):
-    def update_configuration(parameters):
-        return
-
-    def generate_id(self, length):
-        characters = (
-            string.ascii_letters + string.digits
-        )  # Includes uppercase letters, lowercase letters, and digits
-        id = "".join(random.choices(characters, k=length))
-        return id
-
-    def draw_graph(self):
-        nx.draw(self, with_labels=True)
-        nx.draw_networkx_edge_labels(
-            self,
-            pos=nx.spring_layout(self),
-            edge_labels={("adder_instance_1", "adder_instance_2"): "yes"},
-            rotate=True,
-        )
-
     def add_hardware_node(self, instance_name, module_name, **attr):
         """
         Adds a node to the hardware library.
@@ -165,45 +146,6 @@ class HDLGraph(nx.DiGraph):
                 return False
 
         return True
-
-    def add_connection_edge(
-        self, source_module_name, destination_module_name, port_connections
-    ):
-        if source_module_name in self.nodes and destination_module_name in self.nodes:
-            edge_info = self.get_edge_data(source_module_name, destination_module_name)
-            if edge_info:
-                for source_port, destination_port in port_connections.items():
-                    connection = Connection(
-                        source_module=self.nodes[source_module_name],
-                        destination_module=self.nodes[destination_module_name],
-                        source_port=source_port,
-                        destination_port=destination_port,
-                        key=edge_info["key"],
-                    )
-                edge_info["data"]["connection_list"].append(connection)
-
-            else:
-                key = self.generate_id(config.KEY_LENGTH)
-                connection_list = []
-                for source_port, destination_port in port_connections.items():
-                    connection = Connection(
-                        source_module=self.nodes[source_module_name],
-                        destination_module=self.nodes[destination_module_name],
-                        source_port=source_port,
-                        destination_port=destination_port,
-                        key=key,
-                    )
-                    connection_list.append(connection)
-                self._add_edge(
-                    source_module_name,
-                    destination_module_name,
-                    key=key,
-                    data={"key": key, "connection_list": connection_list},
-                )
-        else:
-            raise Exception(
-                "Source or Destination module not found in instantiated node list"
-            )
 
     def to_json(self, filename):
         with open("generated_files/" + filename + ".json", "w") as outfile:
