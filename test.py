@@ -1,55 +1,42 @@
-from pyvis.network import Network
-import json
-import webbrowser
-from hdl_graph import HDLGraph
+import networkx as nx
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
-g = HDLGraph()
-input_dict = {
-    "connections": [
-        {
-            "source_module": "module1",
-            "destination_module": "module2",
-            "source_port": "port1",
-            "destination_port": "port2",
-            "type": "string_value",
-        },
-        {
-            "source_module": "module3",
-            "destination_module": "module4",
-            "source_port": "port3",
-            "destination_port": "port4",
-            "type": 8,
-        },
-    ],
-    "hardware_modules": [
-        {
-            "module_name": "ModuleA",
-            "instance_name": "instA",
-            "port_connections": [
-                {
-                    "internal_port": "module1",
-                    "external_port": "module2",
-                    "external_module": "port1",
-                },
-                {
-                    "internal_port": "module1",
-                    "external_port": "module2",
-                    "external_module": "port1",
-                },
-            ],
-        },
-        {
-            "module_name": "ModuleB",
-            "instance_name": "instB",
-            "port_connections": [
-                {
-                    "internal_port": "module1",
-                    "external_port": "module2",
-                    "external_module": "port1",
-                }
-            ],
-        },
-    ],
-}
+# The graph to visualize
+G = nx.cycle_graph(20)
 
-g.generate_verilog(input_dict, "output_file.sv")
+# 3d spring layout
+pos = nx.spring_layout(G, dim=3, seed=779)
+# Extract node and edge positions from the layout
+node_xyz = np.array([pos[v] for v in sorted(G)])
+edge_xyz = np.array([(pos[u], pos[v]) for u, v in G.edges()])
+
+# Create the 3D figure
+fig = plt.figure()
+ax = fig.add_subplot(111, projection="3d")
+
+# Plot the nodes - alpha is scaled by "depth" automatically
+ax.scatter(*node_xyz.T, s=100, ec="w")
+
+# Plot the edges
+for vizedge in edge_xyz:
+    ax.plot(*vizedge.T, color="tab:gray")
+
+
+def _format_axes(ax):
+    """Visualization options for the 3D axes."""
+    # Turn gridlines off
+    ax.grid(False)
+    # Suppress tick labels
+    for dim in (ax.xaxis, ax.yaxis, ax.zaxis):
+        dim.set_ticks([])
+    # Set axes labels
+    ax.set_xlabel("x")
+    ax.set_ylabel("y")
+    ax.set_zlabel("z")
+
+
+_format_axes(ax)
+fig.tight_layout()
+plt.show()

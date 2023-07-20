@@ -1,0 +1,9 @@
+{
+  "input_block_name": "INPUT_BLOCK",
+    "output_block_name": "OUTPUT_BLOCK",
+  "input_output_block_color":"#0F9D58",
+  "input_output_edge_color":"#0F9D58",
+  "basic_block_color" : "#371F76",
+  "verilog_visualization_base_url" : "http://localhost:5000/"
+
+}

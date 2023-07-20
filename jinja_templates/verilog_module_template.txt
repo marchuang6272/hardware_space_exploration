@@ -1,14 +1,21 @@
 
-{{module_name}} #(
-) {{instance_name}} (
+{{module_name}} #() {{instance_name}} (
     {% for connection in port_connections -%}
-    {%set internal_port = connection.internal_port-%}
-    {%set external_port = connection.external_port-%}
-    {%set external_module = connection.external_module-%}
-    {% if loop.last -%}
-        .{{internal_port}}( {{external_module}}_{{external_port}} )
+    {% set internal_port = connection.internal_port -%}
+    {% set external_port = connection.external_port -%}
+    {% set external_module = connection.external_module -%}
+    {% if external_module == input_block_name or external_module == output_block_name -%}
+        {% if loop.last -%}
+            .{{internal_port}}( {{external_port}} )
+        {% else -%}
+            .{{internal_port}}( {{external_port}} ),
+        {% endif -%}
     {% else -%}
-        .{{internal_port}}( {{external_module}}_{{external_port}} ),
+        {% if loop.last -%}
+            .{{internal_port}}( {{external_module}}_{{external_port}} )
+        {% else -%}
+            .{{internal_port}}( {{external_module}}_{{external_port}} ),
+        {% endif -%}
     {% endif -%}
     {% endfor -%}
 );

@@ -1,0 +1,29 @@
+module {{module_name}}
+(
+    {% for port_name, port_value in port_connections.items()-%}
+    {%set input_output = port_value.input_output-%}
+    {%set type= port_value.type-%}
+    {% if loop.last -%}
+    {% if type is number -%}
+    {% if (type - 1) == 0 -%}
+    {{input_output}} logic {{port_name}}
+    {% else -%}
+    {{input_output}} logic [{{type-1}}:0] {{port_name}}
+    {% endif -%}
+    {% else -%}
+    {{input_output}} logic {{type}} {{port_name}}
+    {% endif -%}
+    {% else -%}
+    {% if type is number -%}
+    {% if (type - 1) == 0 -%}
+    {{input_output}} logic {{port_name}},
+    {% else -%}
+    {{input_output}} logic [{{type-1}}:0] {{port_name}},
+    {% endif -%}
+    {% else -%}
+    {{input_output}} logic {{type}} {{port_name}},
+    {% endif %}
+    {% endif -%}
+    {% endfor -%}
+);
+{{'\n'}}

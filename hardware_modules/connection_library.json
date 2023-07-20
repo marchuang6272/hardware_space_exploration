@@ -1,0 +1,10 @@
+{
+    "intermediate": {
+        "a": 8,
+        "b": 8
+    },
+    "type": {
+        "a": "intermediate",
+        "b": 8
+    }
+}
